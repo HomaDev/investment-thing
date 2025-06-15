@@ -1,0 +1,117 @@
+/* This is a separate file: style.css */
+/* You can copy this content into a style.css file */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* A simple animation for elements fading in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* --- UPDATED GRAPH STYLES --- */
+
+/* The main container for the graph */
+#graph-container {
+    position: relative; /* Needed for the axis lines */
+    background-color: #2d3748; /* bg-gray-800 */
+    border: 1px solid #4a5568; /* border-gray-600 */
+    
+    /* Flexbox for automatic layout */
+    display: flex;
+    align-items: flex-end; /* Aligns bars to the bottom */
+    justify-content: flex-start; /* Align bars to the start */
+    gap: 4px; /* A slightly larger gap for better visuals */
+    
+    /* Padding to make space for the axis lines */
+    padding-left: 35px;
+    padding-right: 10px;
+    padding-bottom: 32px;
+}
+
+/* Axis lines remain the same */
+#graph-container::before, #graph-container::after {
+     content: '';
+     position: absolute;
+     background-color: #4a5568; /* border-gray-600 */
+     z-index: 1;
+}
+
+/* Y-axis line */
+#graph-container::before {
+    left: 30px;
+    bottom: 30px;
+    width: 2px;
+    height: calc(100% - 40px);
+}
+
+/* X-axis line */
+#graph-container::after {
+    left: 30px;
+    bottom: 30px;
+    width: calc(100% - 40px);
+    height: 2px;
+}
+
+/* --- UPDATED BAR STYLES --- */
+.bar-placeholder {
+    /* No longer needs position: absolute or left/bottom */
+    position: relative; /* Crucial for positioning the tooltip */
+    background-color: #4299e1; /* bg-blue-500 */
+    border-top-left-radius: 2px; /* Adjusted for thinner look */
+    border-top-right-radius: 2px;
+    transition: height 0.3s ease-in-out;
+
+    /* --- KEY CHANGE FOR THIN, FLEXIBLE BARS --- */
+    flex-grow: 0; /* Don't grow to fill space */
+    flex-shrink: 1; /* Shrink if needed */
+    flex-basis: 1000px; /* The ideal, thin width */
+    min-width: 0; /* Allow shrinking below content size */
+
+    /* --- ADDED FOR VERTICAL TEXT DISPLAY --- */
+    text-align: top; /* Centers text along the bar's width */
+    white-space: nowrap; /* Prevents text from wrapping */
+    /* If you were using writing-mode: vertical-rl here for text inside the bar,
+       that text will remain. The tooltip is a separate element. */
+}
+
+/* Tooltip that appears on hover, on top of the bar */
+.bar-value-tooltip {
+    position: absolute;
+    bottom: 100%; /* Positions it right above the bar */
+    left: 50%;    /* Centers it horizontally relative to the bar */
+    transform: translateX(-50%) translateY(-4px); /* Fine-tunes centering and adds a small gap */
+    
+    background-color: #1f2937; /* A dark background (like bg-gray-900) */
+    color: #e5e7eb;           /* Light text color (like text-gray-200) */
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 500; /* Medium weight */
+    line-height: 1;
+    white-space: nowrap; /* Ensures the value stays on one line */
+    
+    opacity: 0; /* Hidden by default */
+    visibility: hidden;
+    transition: opacity 0.2s ease-out, visibility 0.2s ease-out, transform 0.2s ease-out;
+    z-index: 10; /* Ensures it's on top of the bar */
+    pointer-events: none; /* Prevents the tooltip from interfering with mouse events on the bar */
+    writing-mode: horizontal-tb; /* Ensures text is horizontal */
+}
+
+.bar-placeholder:hover .bar-value-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-8px); /* Moves slightly further up on hover for a nice effect */
+}

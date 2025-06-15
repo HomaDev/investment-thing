@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Interest Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div id="calculator-container" class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <!-- Header is removed for brevity, but you can keep it -->
+        
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Input Section -->
+            <section id="input-section" class="lg:col-span-1 bg-gray-800 p-6 rounded-xl shadow-lg fade-in">
+                <form id="calculator-form">
+                    <h2 class="text-2xl font-semibold mb-6 text-white">Your Investment Details</h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Starting Sum Input -->
+                        <div>
+                            <label for="starting-sum" class="block text-sm font-medium text-gray-300 mb-2">Starting Sum ($)</label>
+                            <input type="number" value="1000" id="starting-sum" name="starting-sum" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., 1000">
+                        </div>
+                        <!-- Monthly Investment Input -->
+                        <div>
+                            <label for="monthly-investment" class="block text-sm font-medium text-gray-300 mb-2">Monthly Investment ($)</label>
+                            <input type="number" value="100" id="monthly-investment" name="monthly-investment" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., 100">
+                        </div>
+                        
+                        <!-- Annual Interest Rate -->
+                        <div>
+                            <label for="interest-rate" class="block text-sm font-medium text-gray-300 mb-2">Annual Interest Rate (%)</label>
+                            <input type="number" value="8" id="interest-rate" name="interest-rate" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., 7">
+                        </div>
+                        
+                        <!-- Years to Grow -->
+                        <div>
+                            <label for="years" class="block text-sm font-medium text-gray-300 mb-2">Years to Grow</label>
+                            <input type="number" value="5" id="years" name="years" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., 10">
+                        </div>
+                    </div>
+
+                    <!-- Calculate Button -->
+                    <div class="mt-8">
+                         <button type="submit" id="calculate-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                            Calculate
+                         </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Output Section -->
+            <section id="output-section" class="lg:col-span-2 space-y-8">
+                <!-- Graph Placeholder -->
+                <div id="graph-wrapper" class="bg-gray-800 p-6 rounded-xl shadow-lg fade-in" style="animation-delay: 0.1s;">
+                    <h2 class="text-2xl font-semibold mb-4 text-white">Growth Over Time</h2>
+                    <div id="graph-container" class="w-full h-80 rounded-lg">
+                        <!-- Y-Axis Labels (Static examples) -->
+                        <span class="absolute text-xs text-gray-400" style="left: 5px; bottom: 30px; z-index: 2;">$0</span>
+                        <span class="absolute text-xs text-gray-400" style="left: 5px; top: 5px; z-index: 2;">Sum</span>
+                        <!-- X-Axis Labels (Static examples) -->
+                        <span class="absolute text-xs text-gray-400" style="bottom: 5px; right: 5px; z-index: 2;">Years</span>
+                        
+                        <!-- JS will populate this area. The hardcoded bars are removed. -->
+                    </div>
+                </div>
+
+                <!-- Results Grid -->
+                <div id="results-grid-wrapper" class="bg-gray-800 p-6 rounded-xl shadow-lg fade-in" style="animation-delay: 0.2s;">
+                    <h2 class="text-2xl font-semibold mb-4 text-white">Year-by-Year Breakdown</h2>
+                    <div class="overflow-x-auto">
+                        <table id="results-table" class="min-w-full text-sm text-left text-gray-300">
+                            <thead class="text-xs text-gray-200 uppercase bg-gray-700">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">Year</th>
+                                    <th scope="col" class="px-6 py-3">Starting Balance</th>
+                                    <th scope="col" class="px-6 py-3">Total Contributions</th>
+                                    <th scope="col" class="px-6 py-3">Interest Earned</th>
+                                    <th scope="col" class="px-6 py-3 rounded-r-lg">Ending Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody id="results-tbody">
+                                <!-- Example rows are kept for your reference. Clear this in your JS. -->
+                                <tr class="bg-gray-800 border-b border-gray-700">
+                                    <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">1</th>
+                                    <td class="px-6 py-4">$1,000.00</td>
+                                    <td class="px-6 py-4">$1,200.00</td>
+                                    <td class="px-6 py-4 text-green-400">$154.00</td>
+                                    <td class="px-6 py-4 font-semibold text-white">$2,354.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
