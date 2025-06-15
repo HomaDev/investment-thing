@@ -115,3 +115,9 @@ body {
     visibility: visible;
     transform: translateX(-50%) translateY(-8px); /* Moves slightly further up on hover for a nice effect */
 }
+
+.bar-value-tooltip.tooltip-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-8px); /* Same effect as hover */
+}

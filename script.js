@@ -43,10 +43,27 @@ calculateButtonElem.addEventListener('click', function(event) {
         const tooltipElement = document.createElement('span');
         tooltipElement.className = 'bar-value-tooltip';
         tooltipElement.innerHTML = `$${totalSum.toLocaleString()}<br>Year: ${year}`;
-        newBar.appendChild(tooltipElement);
+        
+        newBar.addEventListener('click', function(event) {
+            tooltipElement.className = 'bar-value-tooltip tooltip-visible';
+        })
 
+        newBar.appendChild(tooltipElement);
         graphContainerElem.appendChild(newBar);
     };
 })
 
 // TODO: Consider populating the "Year-by-Year Breakdown" table here as well.
+
+
+document.addEventListener('click', function(event) {
+    let currentTooltipElem = Array.from(event.target.getElementsByClassName('bar-value-tooltip tooltip-visible'));
+
+    let tooltipElemSet = document.getElementsByClassName('bar-value-tooltip tooltip-visible');
+    let tootlipArray = Array.from(tooltipElemSet);
+    tootlipArray.forEach(function(tooltip) {
+        if (currentTooltipElem[0] != tooltip) {
+            tooltip.className = 'bar-value-tooltip'
+        };
+    });
+});
