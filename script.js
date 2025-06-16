@@ -34,6 +34,7 @@ calculateButtonElem.addEventListener('click', function(event) {
     monthlyInvestment = parseInt(monthlyInvestmentElem.value);
     interestRate = parseInt(interestRateElem.value);
     years = parseInt(yearsElem.value);
+
     let totalSum = startSum;
     let thisYearInterestErned = totalSum * (interestRate / 100);
     let startingBalance = 0;
@@ -45,10 +46,10 @@ calculateButtonElem.addEventListener('click', function(event) {
     for (let year = 1; year <= years; year += 1) {
         startingBalance = totalSum;
         thisYearInterestErned = totalSum * (interestRate / 100);
-        totalSum += thisYearInterestErned;
         totalInterestErned += Math.round(thisYearInterestErned);
-        totalSum += monthlyInvestment * 12;
         totalContribution += monthlyInvestment * 12;
+        totalSum += thisYearInterestErned;
+        totalSum += monthlyInvestment * 12;
         totalSum = Math.round(totalSum);
         finalBalance = totalSum;
 
