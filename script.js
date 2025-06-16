@@ -78,19 +78,19 @@ calculateButtonElem.addEventListener('click', function(event) {
         
         let newStartingBalanceElem = document.createElement('td');
         newStartingBalanceElem.className = 'px-6 py-4';
-        newStartingBalanceElem.innerHTML = startingBalance;
+        newStartingBalanceElem.innerHTML = startingBalance.toLocaleString();
 
         let newTotalContributionElem = document.createElement('td');
         newTotalContributionElem.className = 'px-6 py-4';
-        newTotalContributionElem.innerHTML = totalContribution;
+        newTotalContributionElem.innerHTML = totalContribution.toLocaleString();
         
         let newInterestEarnedElem = document.createElement('td');
         newInterestEarnedElem.className = 'px-6 py-4 text-green-400';
-        newInterestEarnedElem.innerHTML = totalInterestErned;
+        newInterestEarnedElem.innerHTML = totalInterestErned.toLocaleString();
 
         let newEndingBalanceElem = document.createElement('td');
         newEndingBalanceElem.className = 'px-6 py-4 font-semibold text-white';
-        newEndingBalanceElem.innerHTML = finalBalance;
+        newEndingBalanceElem.innerHTML = finalBalance.toLocaleString();
 
         newWrapElem.appendChild(newRawElem);
         newWrapElem.appendChild(newStartingBalanceElem);
